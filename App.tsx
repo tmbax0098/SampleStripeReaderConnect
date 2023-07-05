@@ -8,6 +8,7 @@ import {StripeTerminalProvider} from '@stripe/stripe-terminal-react-native';
 import DiscoverReadersScreen from './src/DiscoverReadersScreen';
 
 const fetchTokenProvider = async () => {
+  //sample project we set static secret token
   return 'pst_live_YWNjdF8xOURkcGpIMTJWVWxNcnFMLG9jZUdPT3ZiTTlLZ0J6VTRRZmllQW91OE1HOVZaNHQ_00PSOnGFlv';
 };
 

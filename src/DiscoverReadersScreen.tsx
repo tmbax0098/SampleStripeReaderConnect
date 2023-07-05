@@ -27,7 +27,7 @@ import {
 // @ts-ignore
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 
-
+//sample project we set static lcation id
 const locationReference: string = 'tmr_FKAhYgWyFhuojL';
 
 type DetailOfConnectedReaderProps = {
