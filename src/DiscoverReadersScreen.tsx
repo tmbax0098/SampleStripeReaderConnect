@@ -154,47 +154,44 @@ export default function DiscoverReadersScreen() {
     if (error) console.error(error);
   };
 
-  const handleConnectBluetoothReader = React.useCallback(
-    async (selectedReader: Reader.Type) => {
-      if (waitConnect) return;
-      setWaitConnect(true);
+  const handleConnectBluetoothReader = async (selectedReader: Reader.Type) => {
+    if (waitConnect) return;
+    setWaitConnect(true);
 
-      const {reader, error} = await connectBluetoothReader({
-        reader: selectedReader,
-        locationId: locationReference,
-      });
+    const {reader, error} = await connectBluetoothReader({
+      reader: selectedReader,
+      locationId: locationReference,
+    });
 
-      setWaitConnect(false);
+    setWaitConnect(false);
 
-      if (error) {
-        console.error(error);
-        toast.show({
-          render: () => (
-            <Alert ml={2} variant="left-accent" colorScheme="danger">
-              <Text>{error.message}</Text>
-            </Alert>
-          ),
-          placement: 'bottom-left',
-          duration: 5000,
-        });
-        return;
-      }
-
-      await clearReaderDisplay();
-
+    if (error) {
+      console.error(error);
       toast.show({
         render: () => (
-          <Alert ml={2} variant="left-accent" colorScheme="success">
-            <Text>Reader connected successfully.</Text>
+          <Alert ml={2} variant="left-accent" colorScheme="danger">
+            <Text>{error.message}</Text>
           </Alert>
         ),
         placement: 'bottom-left',
-        duration: 3000,
+        duration: 5000,
       });
-      if (reader?.availableUpdate) installAvailableUpdate().then(() => null);
-    },
-    [],
-  );
+      return;
+    }
+
+    await clearReaderDisplay();
+
+    toast.show({
+      render: () => (
+        <Alert ml={2} variant="left-accent" colorScheme="success">
+          <Text>Reader connected successfully.</Text>
+        </Alert>
+      ),
+      placement: 'bottom-left',
+      duration: 3000,
+    });
+    if (reader?.availableUpdate) installAvailableUpdate().then(() => null);
+  }
 
   const configTerminal = async () => {
     toast.closeAll();
