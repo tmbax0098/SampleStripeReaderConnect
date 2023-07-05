@@ -1,24 +1,14 @@
-
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
-import { NativeBaseProvider } from "native-base";
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {NativeBaseProvider} from 'native-base';
 
-import { StripeTerminalProvider } from "@stripe/stripe-terminal-react-native";
+import {StripeTerminalProvider} from '@stripe/stripe-terminal-react-native';
 import DiscoverReadersScreen from './src/DiscoverReadersScreen';
 
-
 const fetchTokenProvider = async () => {
-  return "pst_live_YWNjdF8xOURkcGpIMTJWVWxNcnFMLHhSRUM3T0plNFVqa2Rib01RWFVxODBuYXJrYVl5RXQ_003LswTqLp"
+  return 'pst_live_YWNjdF8xOURkcGpIMTJWVWxNcnFMLG9jZUdPT3ZiTTlLZ0J6VTRRZmllQW91OE1HOVZaNHQ_00PSOnGFlv';
 };
 
 function App(): JSX.Element {
@@ -30,39 +20,19 @@ function App(): JSX.Element {
 
   return (
     <NativeBaseProvider>
-    <StripeTerminalProvider
-      logLevel="verbose"
-      tokenProvider={fetchTokenProvider}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <DiscoverReadersScreen />
-      </SafeAreaView>
-
-    </StripeTerminalProvider>
+      <StripeTerminalProvider
+        logLevel="verbose"
+        tokenProvider={fetchTokenProvider}>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
+          <DiscoverReadersScreen />
+        </SafeAreaView>
+      </StripeTerminalProvider>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
